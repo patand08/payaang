@@ -1,0 +1,290 @@
+import type { FinalSound, GlyphParts, Vowel, VowelLength } from './types.ts'
+
+function vowel(spec: {
+  id: string
+  length: VowelLength
+  roman: string
+  ipa: string
+  allowsFinal: boolean
+  inherentFinal?: FinalSound
+  inherentFinalIpa?: string
+  open: GlyphParts
+  closed?: GlyphParts
+}): Vowel {
+  return {
+    id: spec.id,
+    length: spec.length,
+    roman: spec.roman,
+    ipa: spec.ipa,
+    allowsFinal: spec.allowsFinal,
+    inherentFinal: spec.inherentFinal ?? null,
+    inherentFinalIpa: spec.inherentFinalIpa ?? null,
+    open: spec.open,
+    closed: spec.closed,
+  }
+}
+
+export const VOWELS: readonly Vowel[] = [
+  vowel({
+    id: 'a',
+    length: 'short',
+    roman: 'a',
+    ipa: 'a',
+    allowsFinal: true,
+    open: { trailing: 'ะ' },
+    closed: { above: 'ั' },
+  }),
+  vowel({
+    id: 'aa',
+    length: 'long',
+    roman: 'aa',
+    ipa: 'aː',
+    allowsFinal: true,
+    open: { trailing: 'า' },
+    closed: { trailing: 'า' },
+  }),
+  vowel({
+    id: 'i',
+    length: 'short',
+    roman: 'i',
+    ipa: 'i',
+    allowsFinal: true,
+    open: { above: 'ิ' },
+    closed: { above: 'ิ' },
+  }),
+  vowel({
+    id: 'ii',
+    length: 'long',
+    roman: 'ii',
+    ipa: 'iː',
+    allowsFinal: true,
+    open: { above: 'ี' },
+    closed: { above: 'ี' },
+  }),
+  vowel({
+    id: 'ue',
+    length: 'short',
+    roman: 'ue',
+    ipa: 'ɯ',
+    allowsFinal: true,
+    open: { above: 'ึ' },
+    closed: { above: 'ึ' },
+  }),
+  vowel({
+    id: 'uee',
+    length: 'long',
+    roman: 'uee',
+    ipa: 'ɯː',
+    allowsFinal: true,
+    open: { above: 'ื', trailing: 'อ' },
+    closed: { above: 'ื' },
+  }),
+  vowel({
+    id: 'u',
+    length: 'short',
+    roman: 'u',
+    ipa: 'u',
+    allowsFinal: true,
+    open: { below: 'ุ' },
+    closed: { below: 'ุ' },
+  }),
+  vowel({
+    id: 'uu',
+    length: 'long',
+    roman: 'uu',
+    ipa: 'uː',
+    allowsFinal: true,
+    open: { below: 'ู' },
+    closed: { below: 'ู' },
+  }),
+  vowel({
+    id: 'e',
+    length: 'short',
+    roman: 'e',
+    ipa: 'e',
+    allowsFinal: true,
+    open: { leading: 'เ', trailing: 'ะ' },
+    closed: { leading: 'เ', above: '็' },
+  }),
+  vowel({
+    id: 'ee',
+    length: 'long',
+    roman: 'ee',
+    ipa: 'eː',
+    allowsFinal: true,
+    open: { leading: 'เ' },
+    closed: { leading: 'เ' },
+  }),
+  vowel({
+    id: 'ae',
+    length: 'short',
+    roman: 'ae',
+    ipa: 'ɛ',
+    allowsFinal: true,
+    open: { leading: 'แ', trailing: 'ะ' },
+    closed: { leading: 'แ', above: '็' },
+  }),
+  vowel({
+    id: 'aee',
+    length: 'long',
+    roman: 'aee',
+    ipa: 'ɛː',
+    allowsFinal: true,
+    open: { leading: 'แ' },
+    closed: { leading: 'แ' },
+  }),
+  vowel({
+    id: 'o',
+    length: 'short',
+    roman: 'o',
+    ipa: 'o',
+    allowsFinal: true,
+    open: { leading: 'โ', trailing: 'ะ' },
+    closed: {},
+  }),
+  vowel({
+    id: 'oo',
+    length: 'long',
+    roman: 'oo',
+    ipa: 'oː',
+    allowsFinal: true,
+    open: { leading: 'โ' },
+    closed: { leading: 'โ' },
+  }),
+  vowel({
+    id: 'aw',
+    length: 'short',
+    roman: 'aw',
+    ipa: 'ɔ',
+    allowsFinal: true,
+    open: { leading: 'เ', trailing: 'าะ' },
+    closed: { above: '็', trailing: 'อ' },
+  }),
+  vowel({
+    id: 'aaw',
+    length: 'long',
+    roman: 'aaw',
+    ipa: 'ɔː',
+    allowsFinal: true,
+    open: { trailing: 'อ' },
+    closed: { trailing: 'อ' },
+  }),
+  vowel({
+    id: 'oe',
+    length: 'short',
+    roman: 'oe',
+    ipa: 'ɤ',
+    allowsFinal: false,
+    open: { leading: 'เ', trailing: 'อะ' },
+  }),
+  vowel({
+    id: 'oee',
+    length: 'long',
+    roman: 'oee',
+    ipa: 'ɤː',
+    allowsFinal: true,
+    open: { leading: 'เ', trailing: 'อ' },
+    closed: { leading: 'เ', above: 'ิ' },
+  }),
+  vowel({
+    id: 'ia',
+    length: 'short',
+    roman: 'ia',
+    ipa: 'ia',
+    allowsFinal: false,
+    open: { leading: 'เ', above: 'ี', trailing: 'ยะ' },
+  }),
+  vowel({
+    id: 'iia',
+    length: 'long',
+    roman: 'iia',
+    ipa: 'iːa',
+    allowsFinal: true,
+    open: { leading: 'เ', above: 'ี', trailing: 'ย' },
+    closed: { leading: 'เ', above: 'ี', trailing: 'ย' },
+  }),
+  vowel({
+    id: 'eua',
+    length: 'short',
+    roman: 'eua',
+    ipa: 'ɯa',
+    allowsFinal: false,
+    open: { leading: 'เ', above: 'ื', trailing: 'อะ' },
+  }),
+  vowel({
+    id: 'euua',
+    length: 'long',
+    roman: 'euua',
+    ipa: 'ɯːa',
+    allowsFinal: true,
+    open: { leading: 'เ', above: 'ื', trailing: 'อ' },
+    closed: { leading: 'เ', above: 'ื', trailing: 'อ' },
+  }),
+  vowel({
+    id: 'ua',
+    length: 'short',
+    roman: 'ua',
+    ipa: 'ua',
+    allowsFinal: false,
+    open: { above: 'ั', trailing: 'วะ' },
+  }),
+  vowel({
+    id: 'uua',
+    length: 'long',
+    roman: 'uua',
+    ipa: 'uːa',
+    allowsFinal: true,
+    open: { above: 'ั', trailing: 'ว' },
+    closed: { trailing: 'ว' },
+  }),
+  vowel({
+    id: 'am',
+    length: 'long',
+    roman: 'am',
+    ipa: 'a',
+    allowsFinal: false,
+    inherentFinal: 'm',
+    inherentFinalIpa: 'm',
+    open: { trailing: 'ำ' },
+  }),
+  vowel({
+    id: 'ai-muan',
+    length: 'long',
+    roman: 'ai',
+    ipa: 'a',
+    allowsFinal: false,
+    inherentFinal: 'y',
+    inherentFinalIpa: 'j',
+    open: { leading: 'ใ' },
+  }),
+  vowel({
+    id: 'ai-malai',
+    length: 'long',
+    roman: 'ai',
+    ipa: 'a',
+    allowsFinal: false,
+    inherentFinal: 'y',
+    inherentFinalIpa: 'j',
+    open: { leading: 'ไ' },
+  }),
+  vowel({
+    id: 'ao',
+    length: 'long',
+    roman: 'ao',
+    ipa: 'a',
+    allowsFinal: false,
+    inherentFinal: 'w',
+    inherentFinalIpa: 'w',
+    open: { leading: 'เ', trailing: 'า' },
+  }),
+]
+
+const BY_ID = new Map(VOWELS.map((item) => [item.id, item]))
+
+export function getVowel(id: string): Vowel {
+  const found = BY_ID.get(id)
+  if (!found) {
+    throw new Error(`Unknown vowel: ${id}`)
+  }
+  return found
+}
